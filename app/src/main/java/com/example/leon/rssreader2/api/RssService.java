@@ -2,7 +2,7 @@ package com.example.leon.rssreader2.api;
 
 import com.example.leon.rssreader2.content.Rss;
 
-import org.simpleframework.xml.Path;
+import retrofit.http.Path;
 
 import retrofit.http.GET;
 
@@ -12,6 +12,6 @@ import retrofit.http.GET;
 public interface RssService {
 
     @GET("/{id}")
-    Rss feed(@Path("id")String id);
+    Rss feed(@Path("id") String id);
 
 }
