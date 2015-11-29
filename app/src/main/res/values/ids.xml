@@ -3,5 +3,6 @@
     
     <item name="rss_loader" type="id" />
     <item name="news_loader" type="id" />
+    <item name="page_loader" type="id" />
 
 </resources>
