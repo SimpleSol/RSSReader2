@@ -6,6 +6,7 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.Html;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,13 +43,13 @@ public class NewsPage extends Fragment implements LoaderManager.LoaderCallbacks<
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        getLoaderManager().initLoader(R.id.news_loader, Bundle.EMPTY, this);
+        getLoaderManager().initLoader(R.id.news_loader, getArguments(), this);
     }
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         if (R.id.news_loader == id) {
-            return new NewsPageLoader(getActivity().getApplicationContext(), 1);
+            return new NewsPageLoader(getActivity().getApplicationContext(), args.getLong(News.Columns._ID));
         }
         return null;
     }
@@ -60,15 +61,12 @@ public class NewsPage extends Fragment implements LoaderManager.LoaderCallbacks<
             if (imageUrl != null) {
                 Picasso.with(getActivity().getApplicationContext()).load(imageUrl).into(mImage);
             }
-            final String fullText = data.getString(data.getColumnIndex(News.Columns.FULL_TEXT));
-//            if (!TextUtils.isEmpty(fullText)) {
-//                mTextView.setText(fullText);
-//            } else {
-//                mTextView.setText(data.getString(data.getColumnIndex(News.Columns.TITLE)));
-//            }
-            mTextView.setText(TextUtils.isEmpty(fullText) ?
-                    data.getString(data.getColumnIndex(News.Columns.TITLE)) :
-                    fullText);
+            String fullText = data.getString(data.getColumnIndex(News.Columns.FULL_TEXT));
+            if (TextUtils.isEmpty(fullText)) {
+                fullText = data.getString(data.getColumnIndex(News.Columns.TITLE));
+            }
+            mTextView.setText(Html.fromHtml(fullText));
+
 
         }
     }

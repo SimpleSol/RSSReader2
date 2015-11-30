@@ -38,9 +38,13 @@ public class NewsList extends ListFragment implements LoaderManager.LoaderCallba
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
+        final Bundle bundle = new Bundle();
+        bundle.putLong(News.Columns._ID, id);
+        final NewsPage page = new NewsPage();
+        page.setArguments(bundle);
         getFragmentManager()
                 .beginTransaction()
-                .replace(R.id.frame, new NewsPage())
+                .replace(R.id.frame, page)
                 .addToBackStack(NewsPage.class.getName())
                 .commit();
     }

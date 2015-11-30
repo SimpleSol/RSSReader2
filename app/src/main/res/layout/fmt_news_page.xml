@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".activity.NewsActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,11 +17,20 @@
             android:layout_weight="1"
             android:contentDescription="@string/news_image_description" />
 
-        <TextView
-            android:id="@android:id/text1"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2" />
+            android:layout_weight="2"
+            android:padding="@dimen/preferred_padding">
+
+            <TextView
+                android:id="@android:id/text1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="?android:attr/textColorPrimary" />
+
+        </FrameLayout>
 
     </LinearLayout>
 
