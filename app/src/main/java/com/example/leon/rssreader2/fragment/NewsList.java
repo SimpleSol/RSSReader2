@@ -38,13 +38,10 @@ public class NewsList extends ListFragment implements LoaderManager.LoaderCallba
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        Cursor cursor = mListAdapter.getCursor();
         NewsPage newsPage = new NewsPage();
         Bundle bundle = new Bundle();
-        if (cursor.moveToPosition(position)) {
-            bundle.putLong(News.Columns._ID, id);
-            newsPage.setArguments(bundle);
-        }
+        bundle.putLong(News.Columns._ID, id);
+        newsPage.setArguments(bundle);
 
         getFragmentManager()
                 .beginTransaction()
