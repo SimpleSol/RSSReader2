@@ -18,9 +18,6 @@ public class NewsActivity extends AppCompatActivity implements FragmentManager.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ac_news);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle(getIntent().getStringExtra(Channel.Columns.TITLE));
-        }
         if (savedInstanceState == null) {
             final NewsList newsList = new NewsList();
             newsList.setArguments(getIntent().getExtras());
