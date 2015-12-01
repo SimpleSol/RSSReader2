@@ -6,6 +6,8 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -57,6 +59,10 @@ public class NewsPage extends Fragment implements LoaderManager.LoaderCallbacks<
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         if (R.id.news_loader == loader.getId() && data.moveToFirst()) {
+            ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+            if (actionBar != null) {
+                actionBar.setTitle(data.getString(data.getColumnIndex(News.Columns.TITLE)));
+            }
             final String imageUrl = data.getString(data.getColumnIndex(News.Columns.IMAGE_URL));
             if (imageUrl != null) {
                 Picasso.with(getActivity().getApplicationContext()).load(imageUrl).into(mImage);
@@ -66,9 +72,8 @@ public class NewsPage extends Fragment implements LoaderManager.LoaderCallbacks<
                 fullText = data.getString(data.getColumnIndex(News.Columns.TITLE));
             }
             mTextView.setText(Html.fromHtml(fullText));
-
-
         }
+
     }
 
     @Override

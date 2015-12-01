@@ -10,8 +10,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.leon.rssreader2.R;
 import com.example.leon.rssreader2.activity.NewsActivity;
@@ -41,6 +43,17 @@ public class ChannelList extends ListFragment implements LoaderManager.LoaderCal
         super.onActivityCreated(savedInstanceState);
         setHasOptionsMenu(true);
         getLoaderManager().initLoader(R.id.rss_loader, Bundle.EMPTY, this);
+        getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                final DeleteChannelDialog deleteChannelDialog = new DeleteChannelDialog();
+                final Bundle bundle = new Bundle();
+                bundle.putLong(Channel.Columns._ID, id);
+                deleteChannelDialog.setArguments(bundle);
+                deleteChannelDialog.show(getFragmentManager(), DeleteChannelDialog.class.getName());
+                return true;
+            }
+        });
     }
 
     @Override

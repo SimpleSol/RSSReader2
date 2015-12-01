@@ -5,9 +5,11 @@ import android.app.LoaderManager;
 import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
+import android.support.v7.app.ActionBar;
 
 import com.example.leon.rssreader2.R;
 import com.example.leon.rssreader2.content.News;

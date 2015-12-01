@@ -9,4 +9,5 @@
     <string name="add">Добавить</string>
     <string name="enter_channel_address">Введите адрес ленты</string>
     <string name="invalid_channel">Invalid channel</string>
+    <string name="are_you_sure">Are you sure?</string>
 </resources>
