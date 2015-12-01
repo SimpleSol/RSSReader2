@@ -14,16 +14,9 @@ public class SyncService extends IntentService {
     }
 
     @Override
-    public void onCreate() {
-        super.onCreate();
-    }
-
-    @Override
     protected void onHandleIntent(Intent intent) {
         Log.d("SyncService", "onHandleIntent");
     }
 }
-
-// sdlfkjsldkjfl
 
 
