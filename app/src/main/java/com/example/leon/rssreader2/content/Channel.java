@@ -57,6 +57,7 @@ public class Channel {
 
     public static interface Columns extends BaseColumns {
         String TITLE = "title";
+        String URL = "url";
         String LINK = "link";
         String IMAGE_URL = "image_url";
     }

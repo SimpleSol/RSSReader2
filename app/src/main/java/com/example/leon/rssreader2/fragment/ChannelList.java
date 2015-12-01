@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
@@ -36,7 +39,23 @@ public class ChannelList extends ListFragment implements LoaderManager.LoaderCal
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        setHasOptionsMenu(true);
         getLoaderManager().initLoader(R.id.rss_loader, Bundle.EMPTY, this);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.channels, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (R.id.action_add == item.getItemId()) {
+            new AddChannelDialog().show(getFragmentManager(), AddChannelDialog.class.getName());
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

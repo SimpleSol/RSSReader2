@@ -6,4 +6,7 @@
     <string name="channel_icon_description">Картинка к каналу новостей</string>
     <string name="page_picture">Картинка к новости</string>
     <string name="news_image_description">Картинка к новости</string>
+    <string name="add">Добавить</string>
+    <string name="enter_channel_address">Введите адрес ленты</string>
+    <string name="invalid_channel">Invalid channel</string>
 </resources>

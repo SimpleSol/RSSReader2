@@ -2,6 +2,7 @@ import android.app.AlarmManager;
 import android.app.Application;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.text.format.DateUtils;
 
 import com.example.leon.rssreader2.service.SyncService;
 
@@ -14,7 +15,7 @@ public class AppDelegate extends Application {
     public void onCreate() {
         super.onCreate();
         final AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
-        am.setRepeating(AlarmManager.RTC, 5000, 60000, PendingIntent
+        am.setRepeating(AlarmManager.RTC, 5000, 5 * DateUtils.MINUTE_IN_MILLIS, PendingIntent
                 .getService(getApplicationContext(), 100500,
                         new Intent(getApplicationContext(), SyncService.class),
                         PendingIntent.FLAG_CANCEL_CURRENT));

@@ -21,7 +21,7 @@ public class SQLiteProvider extends ContentProvider {
 
     public static final String AUTHORITY = BuildConfig.APPLICATION_ID;
 
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
 
     private static final String DATABASE_NAME = "rss.db";
 
@@ -85,10 +85,11 @@ public class SQLiteProvider extends ContentProvider {
         public void onCreate(SQLiteDatabase db) {
             db.execSQL("CREATE TABLE IF NOT EXISTS " + Channel.TABLE +
                     "(_id INTEGER PRIMARY KEY, " +
+                    "url TEXT, " +
                     "title TEXT, " +
                     "link TEXT, " +
                     "image_url TEXT, " +
-                    "UNIQUE(link) ON CONFLICT IGNORE);");
+                    "UNIQUE(url) ON CONFLICT IGNORE);");
 
             db.execSQL("CREATE TABLE IF NOT EXISTS " + News.TABLE +
                     "(_id INTEGER PRIMARY KEY, " +
