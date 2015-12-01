@@ -59,7 +59,6 @@ public class NewsActivity extends AppCompatActivity implements FragmentManager.O
                 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             } else {
                 getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-                getSupportActionBar().setTitle(getIntent().getStringExtra(Channel.Columns.TITLE));
             }
         }
     }

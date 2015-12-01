@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.support.v7.app.ActionBar;
 
 import com.example.leon.rssreader2.R;
+import com.example.leon.rssreader2.content.Channel;
 import com.example.leon.rssreader2.content.News;
 import com.example.leon.rssreader2.loader.NewsLoader;
 import com.example.leon.rssreader2.widget.NewsListAdapter;
@@ -62,6 +63,10 @@ public class NewsList extends ListFragment implements LoaderManager.LoaderCallba
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setTitle(getActivity().getIntent().getStringExtra(Channel.Columns.TITLE));
+        }
         if (R.id.news_loader == loader.getId()) {
             mListAdapter.swapCursor(data);
             setListShown(true);
