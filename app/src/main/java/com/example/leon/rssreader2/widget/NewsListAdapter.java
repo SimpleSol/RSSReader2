@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.example.leon.rssreader2.R;
 import com.example.leon.rssreader2.content.Channel;
 import com.example.leon.rssreader2.content.News;
+import com.example.leon.rssreader2.view.NewsListItem;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -31,12 +32,6 @@ public class NewsListAdapter extends CursorAdapter {
 
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
-        final TextView title = (TextView) view.findViewById(R.id.title);
-        final ImageView image = (ImageView) view.findViewById(R.id.image);
-        title.setText(cursor.getString(cursor.getColumnIndex(News.Columns.TITLE)));
-        final String imageUrl = cursor.getString(cursor.getColumnIndex(News.Columns.IMAGE_URL));
-        if (!TextUtils.isEmpty(imageUrl)) {
-            Picasso.with(context).load(imageUrl).into(image);
-        }
+        ((NewsListItem) view).bindCursor(cursor);
     }
 }
